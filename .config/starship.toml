@@ -1,0 +1,57 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Inserts a blank line between shell prompts
+add_newline = true
+
+# Timeout for commands executed by starship (in milliseconds).
+# Default value is 500
+command_timeout = 3000
+
+# Changes the prompt format
+format = "$time$username$hostname$directory$all$character"
+
+[line_break]
+disabled = true
+
+[time]
+disabled = false
+format = "[$time](green bold) "
+time_format = "%T"
+
+[username]
+disabled = false
+style_user = "white bold"
+style_root = "red bold"
+format = "[$user]($style) "
+show_always = true
+
+[hostname]
+disabled = false
+ssh_only = true
+format = " [$hostname](blue bold) "
+trim_at = ".companyname.com"
+
+# Replace the "❯" symbol in the prompt with "➜"
+[character] # The name of the module we are configuring is "character"
+success_symbol = "[➜](bold green)" # The "success_symbol" segment is being set to "➜" with the color "bold green"
+error_symbol = "[✖](bold red)"
+format = "[$symbol]($style) "
+
+[directory]
+truncation_length = 3
+truncate_to_repo = true
+repo_root_format = "[$before_root_path]($before_repo_root_style)[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) "
+
+# Disable the package module, hiding it from the prompt completely
+[package]
+disabled = false
+
+[docker_context]
+format = '[${symbol}]($style)'
+
+[nodejs]
+format = '[${symbol}($version )]($style)'
+
+[python]
+format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
